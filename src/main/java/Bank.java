@@ -9,8 +9,13 @@
  */
 public class Bank {
 
-    public String bankName;
+    /**string that represents the name of the bank.
+     */
+    private String bankName;
 
+    /**the default constructor for the bank.
+     *
+     */
     public Bank() {
         bankName = "Illini Bank";
     }
@@ -26,9 +31,7 @@ public class Bank {
      * @return boolean
      */
     public boolean withdrawMoney(final BankAccount bankAccount, final double amount) {
-        /*
-         * Implement this function
-         */
+        return bankAccount.getAccountBalance() >= amount;
     }
 
     /**
@@ -42,9 +45,7 @@ public class Bank {
      * @return boolean
      */
     public boolean depositMoney(final BankAccount bankAccount, final double amount) {
-        /*
-         * Implement this function
-         */
+        return amount > 0;
     }
 
     /**
@@ -61,9 +62,7 @@ public class Bank {
 
     public boolean transferMoney(final BankAccount source, final BankAccount destination,
             final double amount) {
-        /*
-         * Implement this function
-         */
+        return withdrawMoney(source, amount) && depositMoney(destination, amount);
     }
 
     /**
@@ -74,22 +73,13 @@ public class Bank {
      */
 
     public void changeOwnerName(final BankAccount bankAccount, final String name) {
-        /*
-         * Implement this function
-         */
+        bankAccount.setOwnerName(name);
     }
 
-    public static int totalAccounts = 0;
     /**
-     * Uses static variable to get number of bank accounts opened.
-     *
-     * @return the total number of accounts
+     * variable that represents total number of accounts.
      */
-    public static int getNumberOfAccount() {
-        /*
-         * Implement this function
-         */
-    }
+    private static int totalAccounts = 0;
 
     /**
      * Main method for testing.
@@ -103,10 +93,10 @@ public class Bank {
         System.out.println("We are excited to have you banking with us!\n\n");
 
         // Create Bank Accounts
-        BankAccount account1 = new BankAccount("John Doe", BankAccountType.CHECKINGS);
+        BankAccount account1 = new BankAccount("John Doe", BankAccount.BankAccountType.CHECKINGS);
         System.out.println("Bank account for John Doe created");
 
-        BankAccount account2 = new BankAccount("Jony Ive", BankAccountType.STUDENT);
+        BankAccount account2 = new BankAccount("Jony Ive", BankAccount.BankAccountType.STUDENT);
         System.out.println("Bank account for Johy Ive created\n\n");
 
         // Deposit money to both accounts and print new balance
